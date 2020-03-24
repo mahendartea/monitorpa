@@ -30,6 +30,24 @@ function tgl_indo($date)
         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
     </div>
 
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <?php if (isset($prodi)) : ?>
+                        <?php foreach ($prodi as $pro) : ?>
+                            Selamat Datang Bpk/Ibu <span class="font-weight-bold"><?= $this->session->userdata('nama') ?></span> | <span class="badge badge-primary"><?= $pro->nama_prodi ?></span>
+                        <?php endforeach; ?>
+                    <?php else : ?>
+                        Selamat Datang Admin
+                    <?php endif ?>
+                </div>
+                <div class="card-body">
+                    Selamat Datang di Aplikasi monitoring Pembimbing Akademik/Pembimbing Skripsi. Aplikasi ini hanya menyediakan akses untuk Ka. Prodi pada prodi-prodi di Universitas Ubudiyah Indonesia. Ka. Prodi dapat memantau Dosen dibawahnya yang membimbing mahasiswa bimbingannya mulai dari seminar hingga sidang. Terima kasih!
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Content Row -->
     <div class="row">
 
@@ -104,127 +122,6 @@ function tgl_indo($date)
     </div>
 
     <!-- Content Row -->
-    <div class="row">
-        <!-- table belum seminar -->
-        <div class="col-md-6">
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-success">Data Mahasiswa Belum Seminar</h6>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <thead align="center">
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama</th>
-                                    <th>Tanggal Seminar</th>
-                                    <th>Pembimbing</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tfoot align="center">
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama</th>
-                                    <th>Tanggal Seminar</th>
-                                    <th>Pembimbing</th>
-                                    <th>Status</th>
-                                </tr>
-                            </tfoot>
-
-                            <tbody>
-                                <?php $no = 1; ?>
-                                <?php foreach ($dataseminno as $mhssmno) : ?>
-                                    <tr class="font-weight-lighter">
-                                        <td align="center"><?= $no ?></td>
-                                        <td><span class="badge badge-info"><?= $mhssmno->nim ?></span> | <span class="badge badge-primary"><?= $mhssmno->nama ?></span></td>
-                                        <?php
-                                        $tanggal = $mhssmno->tgl;
-                                        $tgllahir =  tgl_indo(date($tanggal)); ?>
-                                        <td><?= $tgllahir ?></td>
-                                        <td><?= $mhssmno->nama_dspembimbing ?></td>
-                                        <td align="center">
-                                            <?php
-                                            if ($mhssmno->status == '') {
-                                                echo '<button class="badge badge-primary" disabled>Belum Seminar</button>';
-                                            } else {
-                                                echo '<button class="badge badge-success" disabled>Sudah</button>';
-                                            }
-
-                                            ?>
-                                        </td>
-                                    </tr>
-                                    <?php $no++; ?>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- table sudah seminar -->
-        <div class="col-md-6">
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Data Mahasiswa Telah Seminar</h6>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTabledua" width="100%" cellspacing="0">
-                            <thead align="center">
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama</th>
-                                    <th>Tanggal Seminar</th>
-                                    <th>Pembimbing</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tfoot align="center">
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama</th>
-                                    <th>Tanggal Seminar</th>
-                                    <th>Pembimbing</th>
-                                    <th>Status</th>
-                                </tr>
-                            </tfoot>
-                            <tbody>
-                                <?php $no = 1; ?>
-                                <?php foreach ($dataseminar as $mhssm) : ?>
-                                    <tr class="font-weight-lighter">
-                                        <td align="center"><?= $no ?></td>
-                                        <td><?= $mhssm->nama ?> <span class="badge badge-info"><?= $mhssm->nim ?></span></td>
-                                        <?php
-                                        $tanggal = $mhssm->tgl;
-                                        $tgllahir =  tgl_indo(date($tanggal)); ?>
-                                        <td><?= $tgllahir ?></td>
-                                        <td><?= $mhssm->nama_dspembimbing ?></td>
-                                        <td align="center">
-                                            <?php
-                                            if ($mhssm->status == 'LDP') {
-                                                echo '<button class="badge badge-primary" disabled>Lulus Dengan Perbaikan</button>';
-                                            } else {
-                                                echo '<button class="badge badge-success" disabled>Lulus Tanpa Perbaikan</button>';
-                                            }
-
-                                            ?>
-                                        </td>
-                                    </tr>
-                                    <?php $no++; ?>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-
 
 </div>
 <!-- /.container-fluid -->

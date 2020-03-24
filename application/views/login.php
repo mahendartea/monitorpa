@@ -43,6 +43,8 @@
                                         <h1 class="h4 text-gray-900 mb-5">Monitoring Pembimbing Akademik</h1>
                                         <h2>Universitas Ubudiyah Indonesia</h2>
                                         <hr>
+
+                                        <!-- <?php echo password_hash('admin', PASSWORD_DEFAULT); ?> -->
                                     </div>
                                     <?php echo $this->session->flashdata("msg"); ?>
                                     <form class="user px-4 mt-4" method="post" action="<?= base_url('login/ceklogin'); ?>">
